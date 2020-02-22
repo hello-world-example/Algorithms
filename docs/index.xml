@@ -27,11 +27,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Algorithms/docs/Sort/HeapSort/</guid>
-      <description>堆排序 二叉堆  小顶堆：父结点 &amp;lt;= 子节点；大顶堆：父结点 &amp;gt;= 子节点； 每个结点的左子树和右子树都是一个二叉堆
-# 小顶堆 逻辑结构 10 ↙ ↘ 15 56 ↙ ↘ ↙ 25 30 70 # 存储结构 [10][15][56][25][30][70] __0___1___2___3___4___5 数组的第一个节点是堆顶
- 节点 i 的 父节点：(i – 1) / 2 | (i - 1) &amp;gt;&amp;gt; 1
- 节点 i 的 左节点：2 * i + 1 | i &amp;lt;&amp;lt; 1 + 1
- 第一个节点的左节点 = 2*0+1 = 1 即 15  节点 i 的 右节点：2 * i + 2 | i &amp;lt;&amp;lt; 1 + 2</description>
+      <description> 堆排序 堆排序 基于 二叉堆 的数据结构和特点。
+ 二叉堆 的主要特性在于：堆顶的元素(第1个元素)是 最大/最小 的元素 依次取出堆顶的元素即是有序序列  堆排序的主要流程
+ 构建 小顶堆 或 大顶堆 依次移除 小顶堆 或 大顶堆 的堆顶数据 即可 代码示例详见 二叉堆  </description>
     </item>
     
     <item>

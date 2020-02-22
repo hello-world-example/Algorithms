@@ -121,7 +121,7 @@ https://github.com/alex-shpak/hugo-book
 
 <h2 id="堆树的结构">堆树的结构</h2>
 
-<p><img src="/Users/kail/Library/Application Support/typora-user-images/image-20200222172926564.png" alt="image-20200222172926564" style="zoom:50%;" /></p>
+<p><img src="../_images/HeapTree-1.png" alt="image-20200222172926564" style="zoom:50%;" /></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 存储结构</span>
 <span style="color:#f92672">[</span><span style="color:#ae81ff">10</span><span style="color:#f92672">][</span><span style="color:#ae81ff">15</span><span style="color:#f92672">][</span><span style="color:#ae81ff">56</span><span style="color:#f92672">][</span><span style="color:#ae81ff">25</span><span style="color:#f92672">][</span><span style="color:#ae81ff">30</span><span style="color:#f92672">][</span><span style="color:#ae81ff">70</span><span style="color:#f92672">]</span>
 __0___1___2___3___4___5
@@ -236,6 +236,23 @@ ArrayTreeTool.<span style="color:#a6e22e">swap</span>(dataArr, minIdx, pIdx);
 }</code></pre></div></li>
 </ul>
 
+<h2 id="如何使用">如何使用</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Integer[] <span style="color:#a6e22e">originData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Arrays.<span style="color:#a6e22e">asList</span>(originData));
+
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;</span> originData.<span style="color:#a6e22e">length</span>; i<span style="color:#f92672">++</span>) {
+  <span style="color:#75715e">// 构建 小顶堆
+</span><span style="color:#75715e"></span>  shiftUp(originData, originData[i], Integer<span style="color:#f92672">::</span>compare);
+  <span style="color:#75715e">// 构建 大顶堆
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// shiftUp(originData, originData[i], (n, p) -&gt; -Integer.compare(n, p));
+</span><span style="color:#75715e"></span>}
+System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Arrays.<span style="color:#a6e22e">asList</span>(originData));
+
+<span style="color:#75715e">// 依次移除所有的数据，即堆排序
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (; originData[0] <span style="color:#f92672">&gt;</span> 0; ) {
+  System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(shiftDown(originData, (n, p) <span style="color:#f92672">-&gt;</span> Integer.<span style="color:#a6e22e">compare</span>(n, p)));
+}
+System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Arrays.<span style="color:#a6e22e">asList</span>(originData));</code></pre></div>
 <h2 id="小结">小结</h2>
 
 <ul>
@@ -246,7 +263,7 @@ ArrayTreeTool.<span style="color:#a6e22e">swap</span>(dataArr, minIdx, pIdx);
 <ul>
 <li><strong>优先队列</strong>： 堆顶的元素就是优先级最高的，取出后再按照 <strong>删除树节点</strong> 的流程调整堆</li>
 <li><strong>Top K</strong>： 按照优先级队列的流程 <strong>取 K 次，即可获取最大或最小的 K 个数据</strong></li>
-<li><strong>堆排序</strong>： 堆排序即 TOP K，<code>K = array.length</code></li>
+<li><strong>堆排序</strong>： 堆排序即 TOP K，<code>K = array.length</code>，@see <a href="../../Sort/HeapSort/">堆排序</a></li>
 </ul></li>
 </ul>
 
@@ -258,7 +275,14 @@ ArrayTreeTool.<span style="color:#a6e22e">swap</span>(dataArr, minIdx, pIdx);
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Algorithms/commit/2363b1a535ffd58aeb118411feb55f8b9f73434a" title='Last modified Feb 23, 2020 by 杨凯彬' target="_blank" rel="noopener">
+      <img src="/Algorithms/svg/calendar.svg" alt="Changed" /> Feb 23, 2020
+    </a>
+  </div>
   
   
   <div>
@@ -284,6 +308,7 @@ ArrayTreeTool.<span style="color:#a6e22e">swap</span>(dataArr, minIdx, pIdx);
 <li><a href="#堆树的结构">堆树的结构</a></li>
 <li><a href="#构造堆树">构造堆树</a></li>
 <li><a href="#删除树节点">删除树节点</a></li>
+<li><a href="#如何使用">如何使用</a></li>
 <li><a href="#小结">小结</a></li>
 <li><a href="#read-more">Read More</a></li>
 </ul></li>

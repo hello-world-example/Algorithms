@@ -107,51 +107,31 @@ https://github.com/alex-shpak/hugo-book
 
 <h1 id="堆排序">堆排序</h1>
 
-<h3 id="二叉堆">二叉堆</h3>
+<p>堆排序 基于 <a href="../../Tree/HeapTree">二叉堆</a> 的数据结构和特点。</p>
 
 <ul>
-<li>小顶堆：父结点  &lt;= 子节点；大顶堆：父结点  &gt;= 子节点；</li>
-
-<li><p>每个结点的左子树和右子树都是一个二叉堆</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 小顶堆 逻辑结构</span>
-    <span style="color:#ae81ff">10</span>
-  ↙    ↘
-<span style="color:#ae81ff">15</span>        <span style="color:#ae81ff">56</span>
-↙   ↘     ↙
-<span style="color:#ae81ff">25</span>   <span style="color:#ae81ff">30</span>    <span style="color:#ae81ff">70</span>
-
-<span style="color:#75715e"># 存储结构</span>
-<span style="color:#f92672">[</span><span style="color:#ae81ff">10</span><span style="color:#f92672">][</span><span style="color:#ae81ff">15</span><span style="color:#f92672">][</span><span style="color:#ae81ff">56</span><span style="color:#f92672">][</span><span style="color:#ae81ff">25</span><span style="color:#f92672">][</span><span style="color:#ae81ff">30</span><span style="color:#f92672">][</span><span style="color:#ae81ff">70</span><span style="color:#f92672">]</span>
-__0___1___2___3___4___5</code></pre></div></li>
-
-<li><p>数组的<strong>第一个节点是堆顶</strong></p></li>
-
-<li><p>节点 <code>i</code> 的 <strong>父节点</strong>：<code>(i – 1) / 2</code> | <code>(i - 1) &gt;&gt; 1</code></p></li>
-
-<li><p>节点 <code>i</code> 的 <strong>左节点</strong>：<code>2 * i + 1</code> | <code>i &lt;&lt; 1 + 1</code></p>
-
-<ul>
-<li>第一个节点的左节点 = <code>2*0+1 = 1</code> 即 <code>15</code></li>
-</ul></li>
-
-<li><p>节点 <code>i</code> 的 <strong>右节点</strong>：<code>2 * i + 2</code> | <code>i &lt;&lt; 1 + 2</code></p>
-
-<ul>
-<li>第一个节点的右节点 = <code>2*0+2 = 2</code> 即 <code>56</code>
-
-<br /></li>
-</ul></li>
+<li>二叉堆 的主要特性在于：<strong>堆顶的元素(第1个元素)是 最大/最小 的元素</strong></li>
+<li><strong>依次取出堆顶的元素即是有序序列</strong></li>
 </ul>
 
-<h2 id="read-more">Read More</h2>
+<p>堆排序的主要流程</p>
 
 <ul>
-<li><a href="https://blog.csdn.net/morewindows/article/details/6709644">https://blog.csdn.net/morewindows/article/details/6709644</a></li>
+<li>构建 小顶堆 或 大顶堆</li>
+<li>依次移除 小顶堆 或 大顶堆 的堆顶数据 即可</li>
+<li>代码示例详见  <a href="../../Tree/HeapTree">二叉堆</a></li>
 </ul>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Algorithms/commit/2363b1a535ffd58aeb118411feb55f8b9f73434a" title='Last modified Feb 23, 2020 by 杨凯彬' target="_blank" rel="noopener">
+      <img src="/Algorithms/svg/calendar.svg" alt="Changed" /> Feb 23, 2020
+    </a>
+  </div>
   
   
   <div>
@@ -172,14 +152,7 @@ __0___1___2___3___4___5</code></pre></div></li>
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#堆排序">堆排序</a>
-<ul>
-<li>
-<ul>
-<li><a href="#二叉堆">二叉堆</a></li>
-</ul></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
+<li><a href="#堆排序">堆排序</a></li>
 </ul>
 </nav>
   </aside>

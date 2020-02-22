@@ -11,7 +11,7 @@
 
 ## 堆树的结构
 
-<img src="/Users/kail/Library/Application Support/typora-user-images/image-20200222172926564.png" alt="image-20200222172926564" style="zoom:50%;" />
+<img src="../_images/HeapTree-1.png" alt="image-20200222172926564" style="zoom:50%;" />
 
 
 
@@ -125,6 +125,29 @@ public static Integer shiftDown(Integer[] dataArr, Comparator<Integer> c) {
 }
 ```
 
+## 如何使用
+
+```java
+Integer[] originData = new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+System.out.println(Arrays.asList(originData));
+
+for (int i = 1; i < originData.length; i++) {
+  // 构建 小顶堆
+  shiftUp(originData, originData[i], Integer::compare);
+  // 构建 大顶堆
+  // shiftUp(originData, originData[i], (n, p) -> -Integer.compare(n, p));
+}
+System.out.println(Arrays.asList(originData));
+
+// 依次移除所有的数据，即堆排序
+for (; originData[0] > 0; ) {
+  System.out.println(shiftDown(originData, (n, p) -> Integer.compare(n, p)));
+}
+System.out.println(Arrays.asList(originData));
+```
+
+
+
 ## 小结
 
 - 堆树的主要特性在于：**堆顶的元素(第1个元素)是 最大/最小 的元素**，但是第2个并不一定是 次大或次小 的
@@ -132,7 +155,7 @@ public static Integer shiftDown(Integer[] dataArr, Comparator<Integer> c) {
 - 常见**使用场景**有
   - **优先队列**： 堆顶的元素就是优先级最高的，取出后再按照 **删除树节点** 的流程调整堆
   - **Top K**： 按照优先级队列的流程 **取 K 次，即可获取最大或最小的 K 个数据**
-  - **堆排序**： 堆排序即 TOP K，`K = array.length`
+  - **堆排序**： 堆排序即 TOP K，`K = array.length`，@see [堆排序](../../Sort/HeapSort/)
 
 ## Read More
 
