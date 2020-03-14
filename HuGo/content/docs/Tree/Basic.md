@@ -28,7 +28,7 @@
 
 
 
-<img src="./_images/Basic-1.png" alt="image-20200222012217280" style="zoom:50%;" />
+<img src="../_images/Basic-1.png" alt="image-20200222012217280" style="zoom:50%;" />
 
 ## 二叉查找树 BST
 

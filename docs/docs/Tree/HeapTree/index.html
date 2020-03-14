@@ -7,7 +7,7 @@
 <title>Heap Tree | Algorithms</title>
 
 
-<link rel="stylesheet" href="/Algorithms/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Algorithms/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -50,27 +50,26 @@ https://github.com/alex-shpak/hugo-book
   </style>
 
 <ul>
-<li><p><strong>List</strong></p>
-
+<li>
+<p><strong>List</strong></p>
 <ul>
 <li></li>
-</ul></li>
-
-<li><p><strong>Tree</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>Tree</strong></p>
 <ul>
 <li><a href="/Algorithms/docs/Tree/Basic/">Baisc</a></li>
 <li><a href="/Algorithms/docs/Tree/HeapTree/">二叉堆</a></li>
-</ul></li>
-
-<li><p><strong>Sort</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>Sort</strong></p>
 <ul>
 <li><a href="/Algorithms/docs/Sort/HeapSort/">HeapSort</a></li>
-<li>
-
-<br /></li>
-</ul></li>
+<li></li>
+</ul>
+</li>
 </ul>
 
 
@@ -103,172 +102,165 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="二叉堆">二叉堆</h1>
-
+<article class="markdown"><h1 id="二叉堆">二叉堆</h1>
 <ul>
 <li>二叉堆是一颗 <strong>完全二叉树</strong></li>
 <li><strong>左右子节点并无大小之分，只与父节点有大小之分</strong>，搜索树则不同：父节点大于左子树，小于右子树
-
 <ul>
 <li><strong>大顶堆</strong>：大于等于 其孩子节点的值</li>
 <li><strong>小顶堆</strong>：小于等于 其孩子节点的值</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>每个节点的子树都是堆树</strong></li>
 <li>堆树不同于搜索树，并不善于用来查找元素，主要用来<strong>找最大或最小值</strong> 或 <strong>最大或最小优先级的节点</strong></li>
 </ul>
-
 <h2 id="堆树的结构">堆树的结构</h2>
-
-<p><img src="../_images/HeapTree-1.png" alt="image-20200222172926564" style="zoom:50%;" /></p>
+<p><!-- raw HTML omitted --></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 存储结构</span>
-<span style="color:#f92672">[</span><span style="color:#ae81ff">10</span><span style="color:#f92672">][</span><span style="color:#ae81ff">15</span><span style="color:#f92672">][</span><span style="color:#ae81ff">56</span><span style="color:#f92672">][</span><span style="color:#ae81ff">25</span><span style="color:#f92672">][</span><span style="color:#ae81ff">30</span><span style="color:#f92672">][</span><span style="color:#ae81ff">70</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span>10<span style="color:#f92672">][</span>15<span style="color:#f92672">][</span>56<span style="color:#f92672">][</span>25<span style="color:#f92672">][</span>30<span style="color:#f92672">][</span>70<span style="color:#f92672">]</span>
 __0___1___2___3___4___5
 
-    <span style="color:#f92672">[</span><span style="color:#ae81ff">10</span><span style="color:#f92672">][</span><span style="color:#ae81ff">15</span><span style="color:#f92672">][</span><span style="color:#ae81ff">56</span><span style="color:#f92672">][</span><span style="color:#ae81ff">25</span><span style="color:#f92672">][</span><span style="color:#ae81ff">30</span><span style="color:#f92672">][</span><span style="color:#ae81ff">70</span><span style="color:#f92672">]</span>
-__0___1___2___3___4___5___6</code></pre></div>
-<ul>
-<li>假如数组的 <strong>0号元素是堆顶</strong>，则：</li>
-<li>节点 <code>i</code> 的 <strong>父节点</strong>：<code>(i – 1) / 2</code> | <code>(i - 1) &gt;&gt; 1</code></li>
-
-<li><p>节点 <code>i</code> 的 <strong>左节点</strong>：<code>2 * i + 1</code> | <code>i &lt;&lt; 1 + 1</code></p>
-
+    <span style="color:#f92672">[</span>10<span style="color:#f92672">][</span>15<span style="color:#f92672">][</span>56<span style="color:#f92672">][</span>25<span style="color:#f92672">][</span>30<span style="color:#f92672">][</span>70<span style="color:#f92672">]</span>
+__0___1___2___3___4___5___6
+</code></pre></div><ul>
+<li>
+<p>假如数组的 <strong>0号元素是堆顶</strong>，则：</p>
+</li>
+<li>
+<p>节点 <code>i</code> 的 <strong>父节点</strong>：<code>(i – 1) / 2</code> | <code>(i - 1) &gt;&gt; 1</code></p>
+</li>
+<li>
+<p>节点 <code>i</code> 的 <strong>左节点</strong>：<code>2 * i + 1</code> | <code>i &lt;&lt; 1 + 1</code></p>
 <ul>
 <li>第一个节点的左节点 = <code>2 * 0 + 1 = 1</code> 即 <code>15</code></li>
-</ul></li>
-
-<li><p>节点 <code>i</code> 的 <strong>右节点</strong>：<code>2 * i + 2</code> | <code>i &lt;&lt; 1 + 2</code></p>
-
+</ul>
+</li>
+<li>
+<p>节点 <code>i</code> 的 <strong>右节点</strong>：<code>2 * i + 2</code> | <code>i &lt;&lt; 1 + 2</code></p>
 <ul>
 <li>第一个节点的右节点 = <code>2 * 0 + 2 = 2</code> 即 <code>56</code></li>
-</ul></li>
 </ul>
-
-<hr />
-
+</li>
+</ul>
+<hr>
 <ul>
-<li>假如数组的 1<strong>个元素是堆顶</strong>，0号用来保存临时数据，则：</li>
-<li>节点 <code>i</code> 的 <strong>父节点</strong>：<code>i / 2</code> | <code>i &gt;&gt; 1</code></li>
-
-<li><p>节点 <code>i</code> 的 <strong>左节点</strong>：<code>2 * i</code> | <code>i &lt;&lt; 1</code></p></li>
-
-<li><p>节点 <code>i</code> 的 <strong>右节点</strong>：<code>2 * i + 1</code> | <code>i &lt;&lt; 1 + 1</code></p></li>
+<li>
+<p>假如数组的 1<strong>个元素是堆顶</strong>，0号用来保存临时数据，则：</p>
+</li>
+<li>
+<p>节点 <code>i</code> 的 <strong>父节点</strong>：<code>i / 2</code> | <code>i &gt;&gt; 1</code></p>
+</li>
+<li>
+<p>节点 <code>i</code> 的 <strong>左节点</strong>：<code>2 * i </code> | <code>i &lt;&lt; 1</code></p>
+</li>
+<li>
+<p>节点 <code>i</code> 的 <strong>右节点</strong>：<code>2 * i + 1</code> | <code>i &lt;&lt; 1 + 1</code></p>
+</li>
 </ul>
-
 <h2 id="构造堆树">构造堆树</h2>
-
 <ul>
-<li>新插入的元素，放在现有数据的最后，<strong>仅需与父节点比大小*并交换位置</strong>*，<strong>保证当前节点到根节点是有序的即可</strong>
-
+<li>新插入的元素，放在现有数据的最后，<strong>仅需与父节点比大小<em>并交换位置</em></strong>，<strong>保证当前节点到根节点是有序的即可</strong>
 <ul>
 <li><strong>大顶堆</strong>：如果节点比父节点大，则与父节点交换位置</li>
 <li><strong>小顶堆</strong>：如果节点比父节点小，则与父节点交换位置</li>
-</ul></li>
-
-<li><p>交换位置是数组元素的交换</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">shiftUp</span>(Integer[] <span style="color:#a6e22e">dataArr</span>, <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">newData</span>, Comparator<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>) {
-<span style="color:#75715e">// 这里首位不存储数据，保存数据长度
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>dataArr[0];
-<span style="color:#75715e">// 新数据入位
-</span><span style="color:#75715e"></span>dataArr[index] <span style="color:#f92672">=</span> newData;
-
-<span style="color:#75715e">// 父节点
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">parentIndex</span> <span style="color:#f92672">=</span> index <span style="color:#f92672">/</span> 2;
-  
-<span style="color:#75715e">// 新插入节点与父节点比较大小并交换，直到根节点
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (; parentIndex <span style="color:#f92672">&gt;</span> 0; ) {
-<span style="color:#66d9ef">final</span> <span style="color:#a6e22e">int</span> parentData <span style="color:#f92672">=</span> dataArr[parentIndex];
-<span style="color:#75715e">// 父 &gt; 子 就往上调整（小顶堆）
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (c.<span style="color:#a6e22e">compare</span>(parentData, newData) <span style="color:#f92672">&gt;</span> 0) {
-  ArrayTreeTool.<span style="color:#a6e22e">swap</span>(dataArr, parentIndex, index);
-} <span style="color:#66d9ef">else</span> {
-  <span style="color:#66d9ef">break</span>;
-}
-<span style="color:#75715e">// 交换后记录节点位置，继续向上比较交换
-</span><span style="color:#75715e"></span>parentIndex <span style="color:#f92672">=</span> index <span style="color:#f92672">/</span> 2;
-}
-}</code></pre></div></li>
 </ul>
+</li>
+<li>交换位置是数组元素的交换</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">shiftUp</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">[]</span> dataArr<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> newData<span style="color:#f92672">,</span> Comparator<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> c<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">// 这里首位不存储数据，保存数据长度
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>dataArr<span style="color:#f92672">[</span>0<span style="color:#f92672">];</span>
+  <span style="color:#75715e">// 新数据入位
+</span><span style="color:#75715e"></span>  dataArr<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> newData<span style="color:#f92672">;</span>
 
-<h2 id="删除树节点">删除树节点</h2>
-
+  <span style="color:#75715e">// 父节点
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> parentIndex <span style="color:#f92672">=</span> index <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+  
+  <span style="color:#75715e">// 新插入节点与父节点比较大小并交换，直到根节点
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> <span style="color:#f92672">(;</span> parentIndex <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">;</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> parentData <span style="color:#f92672">=</span> dataArr<span style="color:#f92672">[</span>parentIndex<span style="color:#f92672">];</span>
+    <span style="color:#75715e">// 父 &gt; 子 就往上调整（小顶堆）
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c<span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>parentData<span style="color:#f92672">,</span> newData<span style="color:#f92672">)</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      ArrayTreeTool<span style="color:#f92672">.</span><span style="color:#a6e22e">swap</span><span style="color:#f92672">(</span>dataArr<span style="color:#f92672">,</span> parentIndex<span style="color:#f92672">,</span> index<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 交换后记录节点位置，继续向上比较交换
+</span><span style="color:#75715e"></span>    parentIndex <span style="color:#f92672">=</span> index <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="删除树节点">删除树节点</h2>
 <ul>
 <li>按定义，堆中每次都<strong>只能删除第1个数据</strong>，第1个数据是 最大 或者 最小的数据</li>
 <li>再将<strong>最后一个数据的值</strong>赋给<strong>根结点（第1个数据的位置）</strong></li>
-
-<li><p>再从根结点开始进行一次从上向下的调整，父节点与两个子节点找出最大(最小)的与之交换</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">static</span> Integer <span style="color:#a6e22e">shiftDown</span>(Integer[] <span style="color:#a6e22e">dataArr</span>, Comparator<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>) {
-<span style="color:#75715e">// 返回堆顶节点
-</span><span style="color:#75715e"></span>Integer <span style="color:#a6e22e">firstData</span> <span style="color:#f92672">=</span> dataArr[1];
-<span style="color:#75715e">// 首末未交换
-</span><span style="color:#75715e"></span>ArrayTreeTool.<span style="color:#a6e22e">swap</span>(dataArr, 1, dataArr[0]);
-<span style="color:#75715e">// 元素个数 -1
-</span><span style="color:#75715e"></span>Integer <span style="color:#a6e22e">size</span> <span style="color:#f92672">=</span> <span style="color:#f92672">--</span>dataArr[0];
-
-<span style="color:#75715e">// 第一个节点作为父节点，从上往下交换
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pIdx</span> <span style="color:#f92672">=</span> 1;
-<span style="color:#66d9ef">for</span> (; pIdx <span style="color:#f92672">&lt;=</span> size; ) {
-<span style="color:#75715e">// 左子树
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">minIdx</span> <span style="color:#f92672">=</span> pIdx <span style="color:#f92672">*</span> 2;
-<span style="color:#75715e">// 没有左子树则结束
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (minIdx <span style="color:#f92672">&gt;</span> size) {
-  <span style="color:#66d9ef">break</span>;
-}
-<span style="color:#75715e">// 右子树
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">rIdx</span> <span style="color:#f92672">=</span> pIdx <span style="color:#f92672">*</span> 2 <span style="color:#f92672">+</span> 1;
-<span style="color:#75715e">// 右字数存在
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (rIdx <span style="color:#f92672">&lt;=</span> size) {
-  <span style="color:#75715e">// 找最小的子节点
-</span><span style="color:#75715e"></span>  minIdx <span style="color:#f92672">=</span> c.<span style="color:#a6e22e">compare</span>(dataArr[rIdx], dataArr[minIdx]) <span style="color:#f92672">&lt;</span> 1 <span style="color:#f92672">?</span> rIdx <span style="color:#f92672">:</span> minIdx;
-}
-<span style="color:#75715e">// 最小子节点 与 父节点 比较 找最小
-</span><span style="color:#75715e"></span>minIdx <span style="color:#f92672">=</span> c.<span style="color:#a6e22e">compare</span>(dataArr[pIdx], dataArr[minIdx]) <span style="color:#f92672">&lt;</span> 1 <span style="color:#f92672">?</span> pIdx <span style="color:#f92672">:</span> minIdx;
-<span style="color:#75715e">// 如果最小节点扔仍然是自己，则无需进行交换
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (minIdx <span style="color:#f92672">==</span> pIdx) {
-  <span style="color:#66d9ef">break</span>;
-}
-ArrayTreeTool.<span style="color:#a6e22e">swap</span>(dataArr, minIdx, pIdx);
-<span style="color:#75715e">// 子节点作为父节点，继续往下找
-</span><span style="color:#75715e"></span>pIdx <span style="color:#f92672">=</span> minIdx;
-}
-<span style="color:#66d9ef">return</span> firstData;
-}</code></pre></div></li>
+<li>再从根结点开始进行一次从上向下的调整，父节点与两个子节点找出最大(最小)的与之交换</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Integer <span style="color:#a6e22e">shiftDown</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">[]</span> dataArr<span style="color:#f92672">,</span> Comparator<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> c<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">// 返回堆顶节点
+</span><span style="color:#75715e"></span>  Integer firstData <span style="color:#f92672">=</span> dataArr<span style="color:#f92672">[</span>1<span style="color:#f92672">];</span>
+  <span style="color:#75715e">// 首末未交换
+</span><span style="color:#75715e"></span>  ArrayTreeTool<span style="color:#f92672">.</span><span style="color:#a6e22e">swap</span><span style="color:#f92672">(</span>dataArr<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> dataArr<span style="color:#f92672">[</span>0<span style="color:#f92672">]);</span>
+  <span style="color:#75715e">// 元素个数 -1
+</span><span style="color:#75715e"></span>  Integer size <span style="color:#f92672">=</span> <span style="color:#f92672">--</span>dataArr<span style="color:#f92672">[</span>0<span style="color:#f92672">];</span>
 
-<h2 id="如何使用">如何使用</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Integer[] <span style="color:#a6e22e">originData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Arrays.<span style="color:#a6e22e">asList</span>(originData));
+  <span style="color:#75715e">// 第一个节点作为父节点，从上往下交换
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> pIdx <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">for</span> <span style="color:#f92672">(;</span> pIdx <span style="color:#f92672">&lt;=</span> size<span style="color:#f92672">;</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// 左子树
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> minIdx <span style="color:#f92672">=</span> pIdx <span style="color:#f92672">*</span> 2<span style="color:#f92672">;</span>
+    <span style="color:#75715e">// 没有左子树则结束
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>minIdx <span style="color:#f92672">&gt;</span> size<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 右子树
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> rIdx <span style="color:#f92672">=</span> pIdx <span style="color:#f92672">*</span> 2 <span style="color:#f92672">+</span> 1<span style="color:#f92672">;</span>
+    <span style="color:#75715e">// 右字数存在
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>rIdx <span style="color:#f92672">&lt;=</span> size<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#75715e">// 找最小的子节点
+</span><span style="color:#75715e"></span>      minIdx <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>dataArr<span style="color:#f92672">[</span>rIdx<span style="color:#f92672">],</span> dataArr<span style="color:#f92672">[</span>minIdx<span style="color:#f92672">])</span> <span style="color:#f92672">&lt;</span> 1 <span style="color:#f92672">?</span> rIdx <span style="color:#f92672">:</span> minIdx<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 最小子节点 与 父节点 比较 找最小
+</span><span style="color:#75715e"></span>    minIdx <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>dataArr<span style="color:#f92672">[</span>pIdx<span style="color:#f92672">],</span> dataArr<span style="color:#f92672">[</span>minIdx<span style="color:#f92672">])</span> <span style="color:#f92672">&lt;</span> 1 <span style="color:#f92672">?</span> pIdx <span style="color:#f92672">:</span> minIdx<span style="color:#f92672">;</span>
+    <span style="color:#75715e">// 如果最小节点扔仍然是自己，则无需进行交换
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>minIdx <span style="color:#f92672">==</span> pIdx<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    ArrayTreeTool<span style="color:#f92672">.</span><span style="color:#a6e22e">swap</span><span style="color:#f92672">(</span>dataArr<span style="color:#f92672">,</span> minIdx<span style="color:#f92672">,</span> pIdx<span style="color:#f92672">);</span>
+    <span style="color:#75715e">// 子节点作为父节点，继续往下找
+</span><span style="color:#75715e"></span>    pIdx <span style="color:#f92672">=</span> minIdx<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">return</span> firstData<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="如何使用">如何使用</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Integer<span style="color:#f92672">[]</span> originData <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">[]{</span>0<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 4<span style="color:#f92672">,</span> 5<span style="color:#f92672">,</span> 6<span style="color:#f92672">,</span> 7<span style="color:#f92672">,</span> 8<span style="color:#f92672">,</span> 9<span style="color:#f92672">};</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>originData<span style="color:#f92672">));</span>
 
-<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;</span> originData.<span style="color:#a6e22e">length</span>; i<span style="color:#f92672">++</span>) {
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> originData<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
   <span style="color:#75715e">// 构建 小顶堆
-</span><span style="color:#75715e"></span>  shiftUp(originData, originData[i], Integer<span style="color:#f92672">::</span>compare);
+</span><span style="color:#75715e"></span>  shiftUp<span style="color:#f92672">(</span>originData<span style="color:#f92672">,</span> originData<span style="color:#f92672">[</span>i<span style="color:#f92672">],</span> Integer<span style="color:#f92672">::</span>compare<span style="color:#f92672">);</span>
   <span style="color:#75715e">// 构建 大顶堆
 </span><span style="color:#75715e"></span>  <span style="color:#75715e">// shiftUp(originData, originData[i], (n, p) -&gt; -Integer.compare(n, p));
-</span><span style="color:#75715e"></span>}
-System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Arrays.<span style="color:#a6e22e">asList</span>(originData));
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>originData<span style="color:#f92672">));</span>
 
 <span style="color:#75715e">// 依次移除所有的数据，即堆排序
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (; originData[0] <span style="color:#f92672">&gt;</span> 0; ) {
-  System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(shiftDown(originData, (n, p) <span style="color:#f92672">-&gt;</span> Integer.<span style="color:#a6e22e">compare</span>(n, p)));
-}
-System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Arrays.<span style="color:#a6e22e">asList</span>(originData));</code></pre></div>
-<h2 id="小结">小结</h2>
-
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(;</span> originData<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">;</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>shiftDown<span style="color:#f92672">(</span>originData<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>n<span style="color:#f92672">,</span> p<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>n<span style="color:#f92672">,</span> p<span style="color:#f92672">)));</span>
+<span style="color:#f92672">}</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>originData<span style="color:#f92672">));</span>
+</code></pre></div><h2 id="小结">小结</h2>
 <ul>
 <li>堆树的主要特性在于：<strong>堆顶的元素(第1个元素)是 最大/最小 的元素</strong>，但是第2个并不一定是 次大或次小 的</li>
 <li>所以堆树并不善于用来查找元素，主要用来<strong>找最大或最小值</strong> 或 <strong>最大或最小优先级的节点</strong></li>
 <li>常见<strong>使用场景</strong>有
-
 <ul>
 <li><strong>优先队列</strong>： 堆顶的元素就是优先级最高的，取出后再按照 <strong>删除树节点</strong> 的流程调整堆</li>
 <li><strong>Top K</strong>： 按照优先级队列的流程 <strong>取 K 次，即可获取最大或最小的 K 个数据</strong></li>
 <li><strong>堆排序</strong>： 堆排序即 TOP K，<code>K = array.length</code>，@see <a href="../../Sort/HeapSort/">堆排序</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="read-more">Read More</h2>
-
 <ul>
 <li><a href="https://blog.csdn.net/morewindows/article/details/6709644">堆与堆排序</a></li>
 </ul>
@@ -279,7 +271,7 @@ System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printl
   
   <div>
     
-    <a href="https://github.com/hello-world-example/Algorithms/commit/2363b1a535ffd58aeb118411feb55f8b9f73434a" title='Last modified Feb 23, 2020 by 杨凯彬' target="_blank" rel="noopener">
+    <a href="https://github.com/hello-world-example/Algorithms/commit/233d89c97bc5fd379c73eb9547c2e0f265b42e2a" title='Last modified Feb 23, 2020 by 杨凯彬' target="_blank" rel="noopener">
       <img src="/Algorithms/svg/calendar.svg" alt="Changed" /> Feb 23, 2020
     </a>
   </div>
@@ -302,17 +294,14 @@ System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printl
 
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#二叉堆">二叉堆</a>
-<ul>
-<li><a href="#堆树的结构">堆树的结构</a></li>
-<li><a href="#构造堆树">构造堆树</a></li>
-<li><a href="#删除树节点">删除树节点</a></li>
-<li><a href="#如何使用">如何使用</a></li>
-<li><a href="#小结">小结</a></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#堆树的结构">堆树的结构</a></li>
+    <li><a href="#构造堆树">构造堆树</a></li>
+    <li><a href="#删除树节点">删除树节点</a></li>
+    <li><a href="#如何使用">如何使用</a></li>
+    <li><a href="#小结">小结</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
   </aside>
 
