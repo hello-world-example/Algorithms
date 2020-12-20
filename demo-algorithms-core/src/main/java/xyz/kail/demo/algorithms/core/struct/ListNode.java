@@ -12,19 +12,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NodeVO<T> {
+public class ListNode<T> {
 
     /**
      * 下一个节点
      */
-    private NodeVO<T> next;
+    public ListNode<T> next;
 
     /**
      * 数据节点
      */
-    private T data;
+    public T data;
 
-    public NodeVO(NodeVO<T> next) {
+    public ListNode(ListNode<T> next) {
         this.next = next;
     }
 

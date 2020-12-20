@@ -1,7 +1,7 @@
 package xyz.kail.demo.algorithms.list;
 
 import xyz.kail.demo.algorithms.core.ListTool;
-import xyz.kail.demo.algorithms.core.struct.NodeVO;
+import xyz.kail.demo.algorithms.core.struct.ListNode;
 
 /**
  * 反转链表
@@ -14,21 +14,21 @@ public class ReverseLinkedList {
     /**
      * 反转操作
      */
-    public static NodeVO<String> reverse(NodeVO<String> node) {
+    public static ListNode<String> reverse(ListNode<String> head) {
 
         // 上个节点
-        NodeVO<String> prev = null;
+        ListNode<String> prev = null;
         //
-        while (null != node) {
+        while (null != head) {
             // nextNode 指针
-            final NodeVO<String> next = node.getNext();
+            final ListNode<String> next = head.next;
 
             // 当前节点 -> 上一个节点
-            node.setNext(prev);
+            head.next = prev;
             //
-            prev = node;
+            prev = head;
             // 当前节点往后移
-            node = next;
+            head = next;
         }
 
         return prev;
@@ -36,9 +36,9 @@ public class ReverseLinkedList {
 
 
     public static void main(String[] args) {
-        final NodeVO<String> linkedList = ListTool.Linked.fromString("1,2,3,4,5,6,7,8,9");
+        final ListNode<String> linkedList = ListTool.Linked.fromString("1,2,3,4,5,6,7,8,9");
 
-        final NodeVO<String> newList = reverse(linkedList);
+        final ListNode<String> newList = reverse(linkedList);
 
         final String format = ListTool.Linked.toString(newList);
         System.out.println(format);

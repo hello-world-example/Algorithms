@@ -2,13 +2,13 @@ package xyz.kail.demo.algorithms.core;
 
 import org.junit.Assert;
 import org.junit.Test;
-import xyz.kail.demo.algorithms.core.struct.NodeVO;
+import xyz.kail.demo.algorithms.core.struct.ListNode;
 
 public class ListToolTest {
 
     @Test
     public void testLined() {
-        final NodeVO<String> nodeVO = ListTool.Linked.fromString("1,2,3,4,5");
+        final ListNode<String> nodeVO = ListTool.Linked.fromString("1,2,3,4,5");
 
         Assert.assertEquals("", "1", nodeVO.getData());
         Assert.assertEquals("", "2", nodeVO.getNext().getData());

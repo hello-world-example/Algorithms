@@ -14,6 +14,7 @@
 
         <module>demo-algorithms-sort</module>
         <module>demo-algorithms-list</module>
+        <module>demo-algorithms-tree</module>
     </modules>
 
 

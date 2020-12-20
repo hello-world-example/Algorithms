@@ -1,6 +1,6 @@
 package xyz.kail.demo.algorithms.core;
 
-import xyz.kail.demo.algorithms.core.struct.NodeVO;
+import xyz.kail.demo.algorithms.core.struct.ListNode;
 
 /**
  * 列表相关工具
@@ -43,25 +43,25 @@ public class ListTool {
         /**
          * 字符串转链表
          */
-        public static NodeVO<String> fromString(String str) {
+        public static ListNode<String> fromString(String str) {
             final String[] arr = Array.fromString(str);
             if (arr.length <= 0) {
                 return null;
             }
 
             // 保存最后一条数据，没有下一个节点
-            NodeVO<String> head = new NodeVO<>(null, arr[arr.length - 1]);
+            ListNode<String> head = new ListNode<>(null, arr[arr.length - 1]);
 
             // 倒序遍历
             for (int i = arr.length - 2; i >= 0; i--) {
                 // 1. 创建新的 head，指向当前 head，保存当前数据
                 // 2. 作为新的 head
-                head = new NodeVO<>(head, arr[i]);
+                head = new ListNode<>(head, arr[i]);
             }
             return head;
         }
 
-        public static String toString(NodeVO<?> node) {
+        public static String toString(ListNode<?> node) {
             if (null == node) {
                 return "";
             }

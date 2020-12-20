@@ -8,21 +8,21 @@ import lombok.Setter;
  * 双向节点
  */
 @NoArgsConstructor
-public class Node2VO<T> extends NodeVO<T> {
+public class ListNode2<T> extends ListNode<T> {
 
     /**
      * 上一个
      */
     @Getter
     @Setter
-    private Node2VO<T> prev;
+    private ListNode2<T> prev;
 
-    public Node2VO(NodeVO<T> next, Node2VO<T> prev) {
+    public ListNode2(ListNode<T> next, ListNode2<T> prev) {
         super(next);
         this.prev = prev;
     }
 
-    public Node2VO(Node2VO<T> prev, NodeVO<T> next, T data) {
+    public ListNode2(ListNode2<T> prev, ListNode<T> next, T data) {
         super(next, data);
         this.prev = prev;
     }
