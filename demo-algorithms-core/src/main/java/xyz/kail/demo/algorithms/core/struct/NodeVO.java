@@ -27,4 +27,9 @@ public class NodeVO<T> {
     public NodeVO(NodeVO<T> next) {
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        return this.hashCode() + ":" + data + "->" + (null == next ? null : next.data);
+    }
 }
