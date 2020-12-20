@@ -2,22 +2,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>Algorithms</artifactId>
-        <groupId>Algorithms</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo-algorithms-sort</artifactId>
+    <parent>
+        <groupId>Algorithms</groupId>
+        <artifactId>Algorithms</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>demo-algorithms-list</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>Algorithms</groupId>
             <artifactId>demo-algorithms-core</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-
 
 </project>

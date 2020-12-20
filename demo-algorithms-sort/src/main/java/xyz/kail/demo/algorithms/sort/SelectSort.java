@@ -1,6 +1,6 @@
 package xyz.kail.demo.algorithms.sort;
 
-import xyz.kail.demo.algorithms.tools.ArrayTreeTool;
+import xyz.kail.demo.algorithms.core.tree.ArrayTreeTool;
 
 import java.util.Arrays;
 

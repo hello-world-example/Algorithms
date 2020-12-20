@@ -8,24 +8,20 @@
     <artifactId>Algorithms</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
+        <module>demo-algorithms-core</module>
+
         <module>demo-algorithms-sort</module>
-        <module>demo-algorithms-tools</module>
+        <module>demo-algorithms-list</module>
     </modules>
 
 
     <properties>
         <!-- 项目编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-
-        <!-- JDK 版本-->
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-
-        <java.version>8</java.version>
-        <encoding>UTF-8</encoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -35,38 +31,15 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
+
     </dependencies>
 
-    <!-- 默认行为 -->
-    <build>
-
-        <plugins>
-
-            <!-- 项目编码 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <encoding>${maven.compiler.encoding}</encoding>
-                </configuration>
-            </plugin>
-
-            <!-- war 包的行为 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.3</version>
-                <configuration>
-                    <!-- war 没有 web.xml 编译通过 -->
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-
-        </plugins>
-    </build>
 
     <repositories>
         <repository>
@@ -74,13 +47,5 @@
             <url>https://maven.aliyun.com/repository/public</url>
         </repository>
     </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>aliyun</id>
-            <url>https://maven.aliyun.com/repository/public</url>
-        </pluginRepository>
-    </pluginRepositories>
-
 
 </project>

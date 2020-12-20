@@ -1,4 +1,4 @@
-package xyz.kail.demo.algorithms.tools;
+package xyz.kail.demo.algorithms.core.tree;
 
 public class ArrayTreeTool {
 
