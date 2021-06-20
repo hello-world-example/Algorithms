@@ -11,7 +11,7 @@
 
 ## 堆树的结构
 
-<img src="../_images/HeapTree-1.png" alt="image-20200222172926564" style="zoom:50%;" />
+![](../_images/HeapTree-1.png)
 
 
 

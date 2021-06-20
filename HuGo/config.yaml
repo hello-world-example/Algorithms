@@ -5,6 +5,7 @@ title: Algorithms
 theme: book
 disableKinds: ['taxonomy', 'taxonomyTerm']
 publishDir: '../docs'
+contentdir: '../hugo-algorithms-content'
 
 # Book configuration
 disablePathToLower: true

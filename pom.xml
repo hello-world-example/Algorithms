@@ -15,6 +15,7 @@
         <module>demo-algorithms-sort</module>
         <module>demo-algorithms-list</module>
         <module>demo-algorithms-tree</module>
+        <module>hugo-algorithms-content</module>
     </modules>
 
 
