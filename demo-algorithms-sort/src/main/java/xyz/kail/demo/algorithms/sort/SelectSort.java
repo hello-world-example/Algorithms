@@ -1,6 +1,6 @@
 package xyz.kail.demo.algorithms.sort;
 
-import xyz.kail.demo.algorithms.core.tree.ArrayTreeTool;
+import xyz.kail.demo.algorithms.core.TreeTool;
 
 import java.util.Arrays;
 
@@ -18,7 +18,7 @@ public class SelectSort {
                     maxIndex = j;
                 }
             }
-            ArrayTreeTool.swap(arr, maxIndex, dataLen - i - 1);
+            TreeTool.Array.swap(arr, maxIndex, dataLen - i - 1);
         }
     }
 

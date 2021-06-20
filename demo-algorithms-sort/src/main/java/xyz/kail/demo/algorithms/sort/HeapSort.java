@@ -1,6 +1,6 @@
 package xyz.kail.demo.algorithms.sort;
 
-import xyz.kail.demo.algorithms.core.tree.ArrayTreeTool;
+import xyz.kail.demo.algorithms.core.TreeTool;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -21,7 +21,7 @@ public class HeapSort {
             final int parentData = dataArr[parentIndex];
             // 父 > 子 就往上调整（小顶堆）
             if (c.compare(parentData, newData) > 0) {
-                ArrayTreeTool.swap(dataArr, parentIndex, index);
+                TreeTool.Array.swap(dataArr, parentIndex, index);
             } else {
                 break;
             }
@@ -34,7 +34,7 @@ public class HeapSort {
         // 返回堆顶节点
         Integer firstData = dataArr[1];
         // 首末未交换
-        ArrayTreeTool.swap(dataArr, 1, dataArr[0]);
+        TreeTool.Array.swap(dataArr, 1, dataArr[0]);
         // 元素个数 -1
         Integer size = --dataArr[0];
 
@@ -59,7 +59,7 @@ public class HeapSort {
             if (minIdx == pIdx) {
                 break;
             }
-            ArrayTreeTool.swap(dataArr, minIdx, pIdx);
+            TreeTool.Array.swap(dataArr, minIdx, pIdx);
             pIdx = minIdx;
         }
         return firstData;
